@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import { Link } from "react-router-dom";
 import pokebola from "../../assets/pokebola.png";
 import entrenador from "../../assets/entrenador.png";
@@ -6,12 +6,17 @@ import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
 
+
 // En este componente tenemos nuestro formulario y dentro de él
 // tenemos los componentes que necesitan consumir nuestro estado.
 // Recuerda cual es el paso que debemos tomar para que nuestros
 // componentes puedan consumir un estado global.
 
 const Formulario = () => {
+  // const refFocus = useRef();
+  // useEffect(()=> {
+  //   refFocus.current.focus();
+  // }, [])
   return (
     <>
       <header className="form-header">
@@ -40,7 +45,7 @@ const Formulario = () => {
                 <img src={entrenador} alt="entrenador" />
                 <span>ENTRENADOR</span>
               </p>
-              <Input name="nombre" label="Nombre" />
+              <Input name="nombre" label="Nombre"   />
               <Input name="apellido" label="Apellido" />
               <Input name="email" label="Email" type="email" />
             </div>
