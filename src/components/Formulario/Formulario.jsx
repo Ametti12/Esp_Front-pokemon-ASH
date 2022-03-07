@@ -55,6 +55,10 @@ const Formulario = () => {
                 <span>POKEMON</span>
               </p>
               <Input name="nombrePokemon" label="Nombre" />
+              <Input name="tipo" label="Tipo" />
+              <Input name="elemento" label="Elemento" />
+              <Input name="altura" label="Altura" />
+              <Input name="edad" label="Edad" />
             </div>
           </div>
           <Detalle />

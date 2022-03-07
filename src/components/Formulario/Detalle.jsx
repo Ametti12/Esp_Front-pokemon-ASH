@@ -28,6 +28,10 @@ const Detalle = () => {
         <h4>Datos del Pokémon</h4>
         <div className="fila">
           <p>Nombre:{form.nombrePokemon}</p>
+          <p>Tipo:{form.tipo}</p>
+          <p>Elemento:{form.elemento}</p>
+          <p>Altura:{form.altura}</p>
+          <p>Edad:{form.edad}</p>
         </div>
       </section>
       <button
