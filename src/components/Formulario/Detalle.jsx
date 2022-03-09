@@ -9,6 +9,8 @@ const Detalle = () => {
   const data = useContext(FormContext);
   const {form} = data
 
+  const {nombre, apellido, email} = form?.entrenador;
+  const {nombrePokemon, tipo, elemento, edad, altura} = form?.pokemon;
   return (
     <>
     {console.log(form)}
@@ -19,19 +21,19 @@ const Detalle = () => {
       <section className="datos-cliente">
         <h4>Datos del Entrenador</h4>
         <div className="fila">
-          <p>Nombre: {form.nombre}</p>
-          <p>Apellido: {form.apellido}</p>
-          <p>Email: {form.email}</p>
+          <p>Nombre: {nombre}</p>
+          <p>Apellido: {apellido}</p>
+          <p>Email: {email}</p>
         </div>
       </section>
       <section className="datos-cliente">
         <h4>Datos del Pokémon</h4>
         <div className="fila">
-          <p>Nombre:{form.nombrePokemon}</p>
-          <p>Tipo:{form.tipo}</p>
-          <p>Elemento:{form.elemento}</p>
-          <p>Altura:{form.altura}</p>
-          <p>Edad:{form.edad}</p>
+          <p>Nombre:{nombrePokemon}</p>
+          <p>Tipo:{tipo}</p>
+          <p>Elemento:{elemento}</p>
+          <p>Altura:{altura}</p>
+          <p>Edad:{edad}</p>
         </div>
       </section>
       <button
