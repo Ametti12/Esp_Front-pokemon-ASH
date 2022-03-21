@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 @font-face {
   font-family: "Pokemon";
   src: url("./fonts/pokemon_solid-webfont.woff2") format("woff2"),
     url("./fonts/pokemon_solid-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+}
+:root{
+  --main-bg-color: #c04854;
+  --secondary-bg-color: #31376f;
 }
 
 body {
@@ -14,12 +19,17 @@ body {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-  letter-spacing: 4px;
+  
+}
+
+select {
+  background-color: white;
 }
 
 .App {
   text-align: center;
   height: 100vh;
+  padding-bottom: 20rem;
 }
 
 a {
@@ -74,25 +84,27 @@ h1 {
   background-color: whitesmoke;
   padding: 0.3rem 3rem;
   border-radius: 10px;
-  color: #ed5564;
+  color: var(--main-bg-color);
   cursor: pointer;
   text-shadow: 5px 5px lightgray;
 }
 
 .boton-ingreso:hover {
-  background-color: #ed5564;
+  background-color: var(--main-bg-color);
   color: whitesmoke;
   text-shadow: 5px 5px darkgray;
 }
 
 .formulario-ingreso {
-  color: #ed5564;
+  color: #c4505c;
+  font-family: 'pokemon';
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+  height: 100%;
   padding-bottom: 3rem;
   margin-top: 2rem;
+  letter-spacing: 0.1rem;
 }
 
 .input-contenedor {
@@ -103,7 +115,9 @@ h1 {
   width: 100%;
 }
 
-.input-contenedor input {
+.input-contenedor input,
+.input-contenedor select,
+.boton-seleccionar-especies {
   padding: 1rem;
   width: 300px;
   border-radius: 10px;
@@ -111,10 +125,14 @@ h1 {
   margin-left: 1rem;
 }
 
+.input-contenedor select,
+.boton-seleccionar-especies {
+  width: 338px;
+}
+
 .formulario-ingreso .cuerpo-formulario {
   display: flex;
   flex-direction: row;
-  height: 90%;
 }
 
 .formulario-ingreso h3 {
@@ -127,13 +145,13 @@ h1 {
   border: 1px solid darkgray;
   margin: 0 3rem;
   border-radius: 6px;
-  box-shadow: 5px 5px lightgray;
+  box-shadow: 6px 4px 6px rgba(43, 43, 43, 0.228);
 }
 
 .detalle-formulario .encabezado {
   max-width: 100%;
   padding: 0.5rem;
-  background-color: #ed5564;
+  background-color: var(--main-bg-color);
   color: whitesmoke;
 }
 
@@ -144,8 +162,10 @@ h1 {
 
 .nombre-seccion {
   text-align: left;
+  font-family: pokemon;
+  font-size: medium;
   margin-top: 2rem;
-  color: blue;
+  color: var(--secondary-bg-color);
   display: flex;
   align-items: center;
 }
@@ -157,26 +177,35 @@ h1 {
 
 .datos-cliente .fila {
   display: flex;
-  
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
   padding: 0px 1rem;
   flex-wrap: wrap;
-  color: #ed5564;
+  color: var(--main-bg-color);
+}
+
+.fila span {
+  color: rgb(92, 91, 91);
+}
+
+.loading{
+  display:flex;
+  justify-content: center;
 }
 
 .boton-enviar {
-  padding: 0.6rem 3rem;
+  padding: 0.3rem 3rem;
   border-radius: 10px;
-  background-color: #ed5564;
+  background-color: var(--main-bg-color);
   color: whitesmoke;
-  font-weight: bold;
   font-family: "Pokemon", sans-serif;
   border: none;
   box-shadow: 4px 4px 4px lightgray;
   margin-bottom: 1rem;
+  margin-top: 2rem;
+  letter-spacing: 0.1rem;
   align-self: flex-end;
 }
 
@@ -191,10 +220,11 @@ h1 {
   align-items: center;
   padding: 0.5rem 2rem;
   padding-right: 4rem;
-  background-color: #ed5564;
+  background-color: var(--main-bg-color);
   color: whitesmoke;
   font-weight: bold;
   font-family: "Pokemon", sans-serif;
+  letter-spacing: 0.2rem;
 }
 
 .form-header div {
@@ -209,4 +239,89 @@ h1 {
 
 .volver {
   justify-self: end;
+}
+
+.popup-especie {
+  width: 58%;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+  box-shadow: 6px 4px 6px rgba(43, 43, 43, 0.228);
+}
+
+.contenedor-especies {
+  width: 100%;
+padding-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  
+}
+
+.boton-seleccionar-especies {
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.boton-seleccionar-especies:hover {
+  background-color: lightgray;
+}
+
+.botones-especie {
+  margin: 0.4rem;
+  
+  padding: 0.6rem;
+  border-radius: 10px;
+  background-color: var(--main-bg-color);
+  color: whitesmoke;
+  cursor: pointer;
+  border: 2px solid var(--main-bg-color);
+  box-shadow: 2px 1px 2px 1px darkgray;
+}
+
+.botones-especie:hover {
+  box-shadow: none;
+}
+
+.paginador {
+  position: absolute;
+  margin-top: 2rem;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+small{
+  display: block;
+  
+  color:#c048546f;
+  
+}
+.boton-anterior,
+.boton-siguiente {
+  
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  color: var(--main-bg-color);
+  cursor: pointer;
+  border: 1px solid var(--main-bg-color);
+  box-shadow: 1px 1px 1px 1px darkgray;
+}
+
+.boton-anterior:hover,
+.boton-siguiente:hover {
+  background-color: #e05c69;
+  color: whitesmoke;
+  box-shadow: none;
+}
+
+.boton-anterior {
+  margin-right: 1rem;
 }

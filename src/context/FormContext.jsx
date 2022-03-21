@@ -1,61 +1,70 @@
 import React, { useReducer, createContext } from "react";
+import PropTypes from "prop-types";
 
 /**
  * Creación del contexto global y Provider
+ 
+ * @typedef {Object} initialValues Objeto inicial de form
+ * @property {Object} entrenador 
+ * @property {string} entrenador.nombre
+ * @property {string} entrenador.apellido
+ * @property {string} entrenador.email
  * 
- * Objeto inicial de form
- * @typedef {Object} initialValues 
+ * @property {Object} pokemon
+ * @property {string} pokemon.nombrePokemon
+ * @property {string} pokemon.tipo
+ * @property {string} pokemon.elemento
+ * @property {string} pokemon.altura
+ * @property {string} pokemon.edad
  * 
- * @typedef {Object} entrenador
- * @property {string} nombre 
- * @property {string} apellido 
- * @property {string} email  
- * 
- * @typedef {Object} pokemon
- * @property {string} nombrePokemon 
- * @property {string} elemento 
- * @property {string} edad
- * 
-};
  */
+
 let initialValues = {
   entrenador: {
     nombre: "",
     apellido: "",
-    email: ""
+    email: "",
   },
   pokemon: {
     nombrePokemon: "",
     tipo: "",
     elemento: "",
     altura: "",
-    edad: ""
-  }
+    edad: "",
+  },
 };
 
-
-//Creación de la función reducer -> actualiza el state (form) según el action.type
+/**
+ * Creación de la función reducer -> actualiza el state (form) según el action.type
+ * @param {initialValues} state
+ * @param {{
+ * type: string,
+ * field: {
+ * name: string,
+ * value: string}}} action
+ * @returns {initialValues}
+ *
+ */
 const reducer = (state, action) => {
   switch (action.type) {
-    case "ACTUALIZAR_ENTRENADOR" : {
+    case "ACTUALIZAR_ENTRENADOR": {
       const { name, value } = action.field;
       return {
         ...state,
-        entrenador:{
+        entrenador: {
           ...state.entrenador,
-          [name]: value
-        }
-        
+          [name]: value,
+        },
       };
     }
-    case "ACTUALIZAR_POKEMON" : {
-      const { name, value} = action.field;
+    case "ACTUALIZAR_POKEMON": {
+      const { name, value } = action.field;
       return {
         ...state,
-        pokemon:{
+        pokemon: {
           ...state.pokemon,
-          [name]: value
-        }
+          [name]: value,
+        },
       };
     }
     default:
@@ -66,20 +75,18 @@ const reducer = (state, action) => {
 /**
  * Creación contexto global y PROVIDER que se pasará a cualquier componente que requiera el contexto
  * function updateForm
- * @param {object} input trae propiedades desde el Input de Formulario
- * @property {string} campo nombre de campo de input -> e.target.name
- * @property {string} valor valor de input ingresado -> e.target.value
- * @property {string} tipo propiedad tipo de input -> tipo
- * 
+ * @param {{campo: string,
+ * valor: string,
+ * tipo: string}} input trae propiedades desde el Input de Formulario 
  *  */
 export const FormContext = createContext();
+
 const FormContextProvider = ({ children }) => {
-  
   const [form, dispatch] = useReducer(reducer, initialValues);
 
   const updateForm = (input) => {
-    const {campo, valor, tipo} = input;
-    console.log(input)
+    const { campo, valor, tipo } = input;
+    console.log(input);
     dispatch({
       type: tipo,
       field: {
@@ -91,9 +98,13 @@ const FormContextProvider = ({ children }) => {
 
   const data = { form, updateForm };
 
-  return (
-    <FormContext.Provider value={data}>{children}</FormContext.Provider>
-  );
+  return <FormContext.Provider value={data}>{children}</FormContext.Provider>;
 };
+
+FormContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+
 
 export default FormContextProvider;
